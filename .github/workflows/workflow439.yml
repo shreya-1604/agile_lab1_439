@@ -1,0 +1,28 @@
+name: CI Workflow  # Optional name
+
+on: 
+  push:
+    branches:
+      - main  # Runs on push to main branch
+  pull_request:
+    branches:
+      - main  # Runs on pull request to main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Defines the runner (OS environment)
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Gets the repo code
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install  # Change this based on your project
+
+      - name: Run tests
+        run: npm test  # Runs tests
